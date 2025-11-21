@@ -10,12 +10,9 @@ import {
 import { GoogleAuthForm } from "./settings/auth/components/GoogleAuthForm";
 import { SettingsLdapForm } from "./settings/components/SettingsLdapForm";
 import { SettingsNav } from "./settings/components/SettingsNav";
-import { AppearanceSettingsPage } from "./settings/components/SettingsPages/AppearanceSettingsPage";
 import { AuthenticationSettingsPage } from "./settings/components/SettingsPages/AuthenticationSettingsPage";
-import { CloudSettingsPage } from "./settings/components/SettingsPages/CloudSettingsPage";
 import { EmailSettingsPage } from "./settings/components/SettingsPages/EmailSettingsPage";
 import { GeneralSettingsPage } from "./settings/components/SettingsPages/GeneralSettingsPage";
-import { LicenseSettingsPage } from "./settings/components/SettingsPages/LicenseSettingsPage";
 import { LocalizationSettingsPage } from "./settings/components/SettingsPages/LocalizationSettingsPage";
 import { MapsSettingsPage } from "./settings/components/SettingsPages/MapsSettingsPage";
 import { NotificationSettingsPage } from "./settings/components/SettingsPages/NotificationSettingsPage";
@@ -66,21 +63,6 @@ export const getSettingsRoutes = () => (
       component={PLUGIN_TRANSFORMS_PYTHON.PythonRunnerSettingsPage}
     />
     <Route path="public-sharing" component={PublicSharingSettingsPage} />
-    <Route path="license" component={LicenseSettingsPage} />
-    <Route path="appearance" component={() => <AppearanceSettingsPage />} />
-    <Route
-      path="whitelabel"
-      component={() => <AppearanceSettingsPage tab="branding" />}
-    />
-    <Route
-      path="whitelabel/branding"
-      component={() => <AppearanceSettingsPage tab="branding" />}
-    />
-    <Route
-      path="whitelabel/conceal-metabase"
-      component={() => <AppearanceSettingsPage tab="conceal-metabase" />}
-    />
-    <Route path="cloud" component={CloudSettingsPage} />
     <Route path="*" component={NotFound} />
   </Route>
 );

@@ -7,8 +7,6 @@ import {
   getModularEmbeddingRelatedSettingItems,
 } from "metabase/admin/components/RelatedSettingsSection";
 import { SettingsPageWrapper } from "metabase/admin/components/SettingsSection";
-import { UpsellDevInstances } from "metabase/admin/upsells";
-import { UpsellEmbeddingButton } from "metabase/admin/upsells/UpsellEmbeddingButton";
 import { UpsellSdkLink } from "metabase/admin/upsells/UpsellSdkLink";
 import ExternalLink from "metabase/common/components/ExternalLink";
 import { useDocsUrl, useSetting, useUrlWithUtm } from "metabase/common/hooks";
@@ -161,16 +159,6 @@ export function EmbeddingSdkSettings() {
             href: embedJsDocumentationUrl?.url,
           },
         ]}
-        rightSideContent={
-          !isSimpleEmbedFeatureAvailable ? (
-            <UpsellEmbeddingButton
-              url="https://www.metabase.com/product/embedded-analytics"
-              campaign="embedded-analytics-js"
-              location="embedding-page"
-              size="default"
-            />
-          ) : undefined
-        }
       />
 
       <SdkSettingsCard
@@ -266,8 +254,6 @@ export function EmbeddingSdkSettings() {
       <RelatedSettingsSection
         items={getModularEmbeddingRelatedSettingItems()}
       />
-
-      <UpsellDevInstances location="embedding-page" />
     </SettingsPageWrapper>
   );
 }

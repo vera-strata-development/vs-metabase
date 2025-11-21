@@ -50,11 +50,6 @@ export const getStaticEmbeddingRelatedSettingItems =
       name: t`Databases`,
       to: "/admin/databases",
     },
-    {
-      icon: "palette",
-      name: t`Appearance`,
-      to: "/admin/settings/appearance",
-    },
   ];
 
 export const getInteractiveEmbeddingRelatedSettingItems =

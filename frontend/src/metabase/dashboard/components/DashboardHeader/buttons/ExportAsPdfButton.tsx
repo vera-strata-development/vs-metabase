@@ -9,6 +9,7 @@ import {
 import { DASHBOARD_PDF_EXPORT_ROOT_ID } from "metabase/dashboard/constants";
 import { useDashboardContext } from "metabase/dashboard/context/context";
 import { isJWT } from "metabase/lib/utils";
+import { useSelector } from "metabase/lib/redux";
 import { isUuid } from "metabase/lib/uuid";
 import { ActionIcon, type ActionIconProps, Icon, Tooltip } from "metabase/ui";
 import { saveDashboardPdf } from "metabase/visualizations/lib/save-dashboard-pdf";
@@ -17,6 +18,7 @@ export const ExportAsPdfButton = (props: ActionIconProps) => {
   const { dashboard } = useDashboardContext();
   const isWhitelabeled = useHasTokenFeature("whitelabel");
   const includeBranding = !isWhitelabeled;
+  const state = useSelector((state) => state);
 
   const saveAsPDF = () => {
     const dashboardAccessedVia = match(dashboard?.id)
@@ -34,6 +36,7 @@ export const ExportAsPdfButton = (props: ActionIconProps) => {
       selector: cardNodeSelector,
       dashboardName: dashboard?.name ?? t`Exported dashboard`,
       includeBranding,
+      state,
     });
   };
 

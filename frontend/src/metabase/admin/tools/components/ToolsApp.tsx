@@ -37,11 +37,6 @@ export function ToolsApp({ children }: { children: React.ReactNode }) {
               icon="audit"
             />
             <ToolsNavItem
-              label={t`Erroring questions`}
-              path="/admin/tools/errors"
-              icon="warning_round_filled"
-            />
-            <ToolsNavItem
               label={t`Model cache log`}
               path="/admin/tools/model-caching"
               icon="database"

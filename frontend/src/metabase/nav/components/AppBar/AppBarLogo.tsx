@@ -41,7 +41,7 @@ export function AppBarLogo({
       disabled={!isNavBarEnabled}
       data-testid="main-logo-link"
     >
-      <LogoIcon height={32} />
+      <LogoIcon height={70} />
     </LogoLink>
   );
 }

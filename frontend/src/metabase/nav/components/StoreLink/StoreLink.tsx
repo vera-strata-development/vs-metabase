@@ -6,9 +6,9 @@ import { StoreIcon, StoreIconRoot, StoreIconWrapper } from "./StoreLink.styled";
 
 const StoreLink = () => {
   return (
-    <Tooltip label={t`Explore paid features`}>
+    <Tooltip label={t`Visit Vera Strata`}>
       <StoreIconRoot
-        href="https://metabase.com/upgrade"
+        href="https://verastrata.com"
         data-testid="store-link"
       >
         <StoreIconWrapper>

@@ -26,7 +26,11 @@ RUN git config --global --add safe.directory /home/node
 # install frontend dependencies
 RUN yarn --frozen-lockfile
 
-RUN INTERACTIVE=false CI=true MB_EDITION=$MB_EDITION bin/build.sh :version ${VERSION}
+# Set JVM memory options for build - must be set before the build command
+ENV CLJ_JVM_OPTS="-Xmx8g -Xms4g -XX:+UseG1GC"
+ENV _JAVA_OPTIONS="-Xmx8g -Xms4g"
+
+RUN INTERACTIVE=false CI=true MB_EDITION=$MB_EDITION CLJ_JVM_OPTS="-Xmx8g -Xms4g" bin/build.sh :version ${VERSION}
 
 # ###################
 # # STAGE 2: runner

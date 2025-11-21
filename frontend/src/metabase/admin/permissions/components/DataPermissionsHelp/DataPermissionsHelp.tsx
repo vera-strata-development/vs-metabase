@@ -1,7 +1,6 @@
 import { jt, t } from "ttag";
 
 import { PermissionHelpDescription } from "metabase/admin/permissions/components/PermissionHelpDescription";
-import { getLimitedPermissionAvailabilityMessage } from "metabase/admin/permissions/constants/messages";
 import { DataPermissionValue } from "metabase/admin/permissions/types";
 import ExternalLink from "metabase/common/components/ExternalLink";
 import { useDocsUrl } from "metabase/common/hooks";
@@ -67,7 +66,6 @@ export const DataPermissionsHelp = () => {
               />
 
               <PermissionHelpDescription
-                hasUpgradeNotice={!isAdvancedPermissionsFeatureEnabled}
                 icon="database"
                 iconColor="warning"
                 name={t`Impersonated (Pro)`}
@@ -84,7 +82,6 @@ export const DataPermissionsHelp = () => {
               )}
 
               <PermissionHelpDescription
-                hasUpgradeNotice={!isAdvancedPermissionsFeatureEnabled}
                 icon="close"
                 iconColor="danger"
                 name={t`Blocked (Pro)`}
@@ -118,7 +115,6 @@ export const DataPermissionsHelp = () => {
               )}
 
               <PermissionHelpDescription
-                hasUpgradeNotice={!isAdvancedPermissionsFeatureEnabled}
                 icon="permissions_limited"
                 iconColor="brand"
                 name={t`Row and column security (Pro)`}
@@ -126,13 +122,12 @@ export const DataPermissionsHelp = () => {
               />
 
               <PermissionHelpDescription
-                hasUpgradeNotice={!isAdvancedPermissionsFeatureEnabled}
                 icon="close"
                 iconColor="danger"
                 name={t`Blocked (Pro)`}
                 description={
                   <>
-                    <Text>{t`The group can’t view:`}</Text>
+                    <Text>{t`The group can't view:`}</Text>
                     <List style={{ marginInlineEnd: "1rem" }}>
                       <List.Item>
                         <Text>{t`The schema/table when browsing data.`}</Text>
@@ -200,23 +195,17 @@ export const DataPermissionsHelp = () => {
               <Text>
                 {jt`${(
                   <strong key="permission">{t`Download results (Pro):`}</strong>
-                )} The group can download results, up to a maximum number of rows that you set.`}{" "}
-                {!isAdvancedPermissionsFeatureEnabled &&
-                  getLimitedPermissionAvailabilityMessage()}
+                )} The group can download results, up to a maximum number of rows that you set.`}
               </Text>
               <Text>
                 {jt`${(
                   <strong key="permission">{t`Manage Data Model (Pro):`}</strong>
-                )} The group can edit metadata via the “Table metadata” tab in the Admin settings.`}{" "}
-                {!isAdvancedPermissionsFeatureEnabled &&
-                  getLimitedPermissionAvailabilityMessage()}
+                )} The group can edit metadata via the "Table metadata" tab in the Admin settings.`}
               </Text>
               <Text>
                 {jt`${(
                   <strong key="permission">{t`Manage Database (Pro):`}</strong>
-                )} The group can edit database settings for a given database in the “Database” tab of the Admin settings.`}{" "}
-                {!isAdvancedPermissionsFeatureEnabled &&
-                  getLimitedPermissionAvailabilityMessage()}
+                )} The group can edit database settings for a given database in the "Database" tab of the Admin settings.`}
               </Text>
             </Stack>
           </Accordion.Panel>

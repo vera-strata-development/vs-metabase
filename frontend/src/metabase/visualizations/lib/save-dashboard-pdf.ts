@@ -154,6 +154,7 @@ interface SavePdfProps {
   selector: string;
   dashboardName: string;
   includeBranding: boolean;
+  state?: any;
 }
 
 async function isValidColor(str: string) {
@@ -172,6 +173,7 @@ export const saveDashboardPdf = async ({
   selector,
   dashboardName,
   includeBranding,
+  state,
 }: SavePdfProps) => {
   const originalFileName = `${dashboardName}.pdf`;
   const fileName = includeBranding
@@ -257,7 +259,7 @@ export const saveDashboardPdf = async ({
       node.insertBefore(pdfHeader, node.firstChild);
 
       if (includeBranding) {
-        const branding = createBrandingElement(size);
+        const branding = createBrandingElement(size, state);
         node.insertBefore(branding, node.firstChild);
       }
     },
@@ -341,8 +343,7 @@ export const saveDashboardPdf = async ({
       );
 
       if (isFirstPage && includeBranding) {
-        const url =
-          "https://www.metabase.com?utm_source=product&utm_medium=export&utm_campaign=exports_branding&utm_content=pdf_export";
+        const url = "https://www.verastrata.com";
 
         pdf.link(PAGE_PADDING, PAGE_PADDING, contentWidth, brandingHeight, {
           url,

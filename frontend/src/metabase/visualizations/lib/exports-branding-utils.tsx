@@ -1,7 +1,7 @@
 import ReactDOMServer from "react-dom/server";
 import { t } from "ttag";
 
-import BrandingLogo from "metabase/public/components/EmbedFrame/LogoBadge/metabase_logo_with_text.svg?component";
+import { getSetting } from "metabase/selectors/settings";
 
 type BrandingSize = "xs" | "s" | "m" | "l" | "xl" | "xxl" | "xxxl";
 
@@ -53,11 +53,11 @@ export const getBrandingConfig = (size: BrandingSize): BrandingConfig => {
   const sizes = ["xs", "s", "m", "l", "xl", "xxl", "xxxl"];
   const sizeIndex = sizes.indexOf(size);
 
-  const fzValues = [6, 6, 8, 12, 14, 16, 20];
-  const marginValues = [0, 4, 6, 6, 12, 14, 20];
+  const fzValues = [10, 12, 14, 18, 20, 24, 28];
+  const marginValues = [0, 8, 10, 12, 16, 20, 26];
   const paddingValues = [8, 16, 24, 24, 32, 32, 48];
-  const heightValues = [32, 32, 52, 60, 84, 112, 144];
-  const logoHeights = [16, 16, 20, 28, 36, 48, 64];
+  const heightValues = [60, 75, 100, 120, 145, 175, 210];
+  const logoHeights = [40, 50, 65, 85, 110, 135, 165];
 
   const getDimension = (values: number[]): number => values[sizeIndex];
 
@@ -70,16 +70,18 @@ export const getBrandingConfig = (size: BrandingSize): BrandingConfig => {
   };
 };
 
-export const createBrandingElement = (size: BrandingSize) => {
+export const createBrandingElement = (size: BrandingSize, state?: any) => {
   const { fz, h, ly, m, p } = getBrandingConfig(size);
 
-  const LOGO_ASCPECT_RATIO = 4.0625;
-  const LOGO_HEIGHT = ly;
-  const LOGO_WIDTH = LOGO_HEIGHT * LOGO_ASCPECT_RATIO;
+  // Get custom logo from settings, fallback to default Vera Strata logo
+  const customLogoUrl = state ? getSetting(state, "application-logo-url") : null;
+  const logoSrc = customLogoUrl || "/app/assets/img/logo.svg";
 
-  const LogoComponent = (
-    <BrandingLogo width={LOGO_WIDTH} height={LOGO_HEIGHT} />
-  );
+  // Default aspect ratio for Vera Strata logo is ~1.4:1
+  // For custom logos, we'll try to maintain aspect ratio but with some constraints
+  const LOGO_ASPECT_RATIO = 1.4;
+  const LOGO_HEIGHT = ly;
+  const LOGO_WIDTH = LOGO_HEIGHT * LOGO_ASPECT_RATIO;
 
   const container = document.createElement("div");
   container.style.cssText = `
@@ -94,7 +96,7 @@ export const createBrandingElement = (size: BrandingSize) => {
 
   if (size !== "xs") {
     const brandingCopy = document.createElement("span");
-    brandingCopy.textContent = t`Made with`;
+    brandingCopy.textContent = t`Powered by`;
     brandingCopy.style.cssText = `
       font-family: "Lato", sans-serif;
       font-size: ${fz}px;
@@ -107,12 +109,11 @@ export const createBrandingElement = (size: BrandingSize) => {
     container.appendChild(brandingCopy);
   }
 
-  const logoDataUrl = svgComponentToBase64(LogoComponent);
-
   const logo = document.createElement("img");
-  logo.src = logoDataUrl;
+  logo.src = logoSrc;
   logo.width = LOGO_WIDTH;
   logo.height = LOGO_HEIGHT;
+  logo.style.cssText = "object-fit: contain; max-width: 250px;"; // Add max-width constraint for very wide logos
 
   container.appendChild(logo);
 

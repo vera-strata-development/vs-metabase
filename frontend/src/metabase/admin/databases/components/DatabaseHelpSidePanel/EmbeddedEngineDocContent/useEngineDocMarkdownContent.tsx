@@ -22,22 +22,28 @@ export const useEngineDocMarkdownContent = (engineKey: EngineKey) => {
     setIsLoading(true);
     setLoadingError(undefined);
 
-    import(`docs/databases/connections/${docFileName}.md`)
-      .then((result: { default: string }) => {
-        setMarkdownContent(result.default);
-      })
-      .catch((err) => {
-        setMarkdownContent(undefined);
-        setLoadingError(t`Failed to load detailed documentation`);
-        console.error(
-          "Failed to load documentation for engine:",
-          engineKey,
-          err,
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    // Temporarily disabled due to build issues with docs module resolution
+    // import(`docs/databases/connections/${docFileName}.md`)
+    //   .then((result: { default: string }) => {
+    //     setMarkdownContent(result.default);
+    //   })
+    //   .catch((err) => {
+    //     setMarkdownContent(undefined);
+    //     setLoadingError(t`Failed to load detailed documentation`);
+    //     console.error(
+    //       "Failed to load documentation for engine:",
+    //       engineKey,
+    //       err,
+    //     );
+    //   })
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   });
+
+    // Temporary workaround - disable engine docs
+    setMarkdownContent(undefined);
+    setLoadingError(t`Documentation temporarily unavailable`);
+    setIsLoading(false);
   }, [engineKey]);
 
   return { markdownContent, loadingError, isLoading };

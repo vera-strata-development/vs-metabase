@@ -8,7 +8,6 @@ import {
   SettingsPageWrapper,
   SettingsSection,
 } from "metabase/admin/components/SettingsSection";
-import { UpsellDevInstances } from "metabase/admin/upsells";
 import { useSetting } from "metabase/common/hooks";
 import { PLUGIN_CONTENT_TRANSLATION } from "metabase/plugins";
 import { Box } from "metabase/ui";
@@ -41,7 +40,6 @@ export function StaticEmbeddingSettings() {
       <PLUGIN_CONTENT_TRANSLATION.ContentTranslationConfiguration />
 
       <RelatedSettingsSection items={getStaticEmbeddingRelatedSettingItems()} />
-      <UpsellDevInstances location="embedding-page" />
     </SettingsPageWrapper>
   );
 }

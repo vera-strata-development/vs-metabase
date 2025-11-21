@@ -71,7 +71,7 @@ export const AdminNavbar = ({
     >
       <AdminLogoLink to="/admin">
         <AdminLogoContainer>
-          <LogoIcon className={cx(CS.textBrand, CS.my2)} dark />
+          <LogoIcon height={70} className={cx(CS.textBrand, CS.my2)} dark />
           {/* eslint-disable-next-line no-literal-metabase-strings -- Metabase settings */}
           <AdminLogoText>{t`Metabase Admin`}</AdminLogoText>
         </AdminLogoContainer>

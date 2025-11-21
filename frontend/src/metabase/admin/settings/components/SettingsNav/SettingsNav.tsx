@@ -62,31 +62,6 @@ export function SettingsNav() {
         icon="globe"
       />
       <SettingsNavItem path="maps" label={t`Maps`} icon="pinmap" />
-      <SettingsNavItem
-        path={!hasWhitelabel ? "whitelabel" : undefined}
-        folderPattern="whitelabel"
-        label={
-          <Flex gap="sm" align="center">
-            <span>{t`Appearance`}</span>
-            {!hasWhitelabel && <UpsellGem />}
-          </Flex>
-        }
-        icon="palette"
-      >
-        {hasWhitelabel && [
-          // using an array so that child path detection can access them as direct children
-          <SettingsNavItem
-            key="branding"
-            path="whitelabel/branding"
-            label={t`Branding`}
-          />,
-          <SettingsNavItem
-            key="conceal"
-            path="whitelabel/conceal-metabase"
-            label={t`Conceal Metabase`}
-          />,
-        ]}
-      </SettingsNavItem>
       <NavDivider />
       <SettingsNavItem path="uploads" label={t`Uploads`} icon="upload" />
       {/* Python Runner settings are managed by Metabase Cloud for hosted instances */}
@@ -101,18 +76,6 @@ export function SettingsNav() {
         path="public-sharing"
         label={t`Public sharing`}
         icon="share"
-      />
-      <NavDivider />
-      <SettingsNavItem path="license" label={t`License`} icon="store" />
-      <SettingsNavItem
-        path="cloud"
-        label={
-          <Flex gap="sm" align="center">
-            <span>{t`Cloud`}</span>
-            {!hasHosting && <UpsellGem />}
-          </Flex>
-        }
-        icon="cloud"
       />
     </AdminNavWrapper>
   );
