@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="32" fill="none" viewBox="0 0 120 32">
+  <style>
+    :root{--vs-color-logo-primary:#4f9fe4;--vs-color-logo-text:#5a6072}
+  </style>
+  <g fill="var(--vs-color-logo-primary)">
+    <path d="M2.5 8c0-1 .8-2 2-2s2 1 2 2v16c0 1-.8 2-2 2s-2-1-2-2V8z"/>
+    <path d="M9 14c0-1 .8-2 2-2s2 1 2 2v10c0 1-.8 2-2 2s-2-1-2-2V14z"/>
+    <path d="M15.5 10c0-1 .8-2 2-2s2 1 2 2v14c0 1-.8 2-2 2s-2-1-2-2V10z"/>
+    <path d="M22 16c0-1 .8-2 2-2s2 1 2 2v8c0 1-.8 2-2 2s-2-1-2-2v-8z"/>
+  </g>
+  <g fill="var(--vs-color-logo-text)">
+    <text x="32" y="21" font-family="Calibri, sans-serif" font-size="14" font-weight="500">VSDatabase</text>
+  </g>
+</svg>
